@@ -6,7 +6,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Filter extends NodeAbstract
 {
-    private $childs = array();
+    private $children = array();
     private $filter;
 
     public function __construct(array $position, $filter)
@@ -22,12 +22,12 @@ class Filter extends NodeAbstract
 
     public function addChild(NodeAbstract $node)
     {
-        $this->childs[] = $node;
+        $this->children[] = $node;
     }
 
-    public function getChilds()
+    public function getChildren()
     {
-        return $this->childs;
+        return $this->children;
     }
 
     public function getNodeName()
@@ -40,7 +40,7 @@ class Filter extends NodeAbstract
         if (false !== $visitor->enterFilter($this)) {
             
             if (false !== $visitor->enterFilterChilds($this)) {
-                foreach($this->getChilds() as $child) {
+                foreach($this->getChildren() as $child) {
                     $child->accept($visitor);
                 }
             }

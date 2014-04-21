@@ -10,7 +10,7 @@ abstract class AbstractFilter implements FilterInterface
 {
     public function isOptimizable(Renderer $renderer, Filter $node, $options)
     {
-        foreach ($node->getChilds() as $line) {
+        foreach ($node->getChildren() as $line) {
             foreach ($line->getContent()->getChilds() as $child) {
                 if ($child instanceof Insert) {
                     return false;
@@ -23,7 +23,7 @@ abstract class AbstractFilter implements FilterInterface
 
     protected function renderFilter(Renderer $renderer, Filter $node)
     {
-        foreach($node->getChilds() as $child) {
+        foreach($node->getChildren() as $child) {
             $child->accept($renderer);
         }
     }
@@ -31,7 +31,7 @@ abstract class AbstractFilter implements FilterInterface
     protected function getContent(Filter $node)
     {
         $content = '';
-        foreach ($node->getChilds() as $line) {
+        foreach ($node->getChildren() as $line) {
             foreach ($line->getContent()->getChilds() as $child) {
                 $content .= $child->getContent();
             }

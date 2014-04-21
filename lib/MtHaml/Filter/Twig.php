@@ -29,7 +29,7 @@ class Twig extends AbstractFilter
 
     public function optimize(Renderer $renderer, Filter $node, $options)
     {
-        foreach ($node->getChilds() as $line) {
+        foreach ($node->getChildren() as $line) {
             $content = '';
             foreach ($line->getContent()->getChilds() as $child) {
                 $content .= $child->getContent();

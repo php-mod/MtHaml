@@ -161,7 +161,7 @@ class PhpRenderer extends RendererAbstract
             $this->indent();
 
             $first = true;
-            foreach ($node->getChilds() as $statement) {
+            foreach ($node->getChildren() as $statement) {
                 if ($first) {
                     $first = false;
                 } else {
