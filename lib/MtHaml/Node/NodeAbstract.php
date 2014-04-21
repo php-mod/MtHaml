@@ -4,7 +4,7 @@ namespace MtHaml\Node;
 
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
-abstract class NodeAbstract
+abstract class NodeAbstract implements Node
 {
     private $position;
     private $parent;

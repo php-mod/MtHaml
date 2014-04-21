@@ -3,7 +3,6 @@
 namespace MtHaml\Node;
 
 use MtHaml\NodeVisitor\NodeVisitorInterface;
-use MtHaml\Node\NodeAbstract;
 
 class TagAttribute extends NodeAbstract
 {

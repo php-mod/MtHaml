@@ -2,7 +2,6 @@
 
 namespace MtHaml\Node;
 
-use MtHaml\Node\NodeAbstract;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class ObjectRefId extends NodeAbstract

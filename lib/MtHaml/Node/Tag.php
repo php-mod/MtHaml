@@ -3,7 +3,6 @@
 namespace MtHaml\Node;
 
 use MtHaml\NodeVisitor\NodeVisitorInterface;
-use MtHaml\Node\TagAttribute;
 
 class Tag extends NestAbstract
 {
@@ -12,14 +11,21 @@ class Tag extends NestAbstract
     const FLAG_SELF_CLOSE = 4;
 
     protected $tagName;
-    protected $attributes;
+
+    /**
+     * @var TagAttribute[]
+     */
+    protected $attributes = array();
     protected $flags;
 
     public function __construct(array $position, $tagName, array $attributes, $flags = 0)
     {
         parent::__construct($position);
         $this->tagName = $tagName;
-        $this->attributes = $attributes;
+        foreach($attributes as $attribute)
+        {
+            $this->addAttribute($attribute);
+        }
         $this->flags = $flags;
     }
 

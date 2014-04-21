@@ -6,6 +6,9 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Filter extends NodeAbstract
 {
+    /**
+     * @var Statement[]
+     */
     private $children = array();
     private $filter;
 
@@ -20,7 +23,7 @@ class Filter extends NodeAbstract
         return $this->filter;
     }
 
-    public function addChild(NodeAbstract $node)
+    public function addChild(Statement $node)
     {
         $this->children[] = $node;
     }

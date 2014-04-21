@@ -6,6 +6,9 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Statement extends NodeAbstract
 {
+    /**
+     * @var String
+     */
     protected $content;
 
     public function __construct(array $position, NodeAbstract $content)

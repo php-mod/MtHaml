@@ -10,7 +10,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
  * Represents a ruby-like interpolated string. Children are Text and Insert
  * nodes.
  */
-class InterpolatedString extends NodeAbstract
+class InterpolatedString extends NodeAbstract implements String
 {
     protected $childs;
 
