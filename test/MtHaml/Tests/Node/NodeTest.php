@@ -48,7 +48,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         extract($this->createNodes());
 
         $node->removeChild($nodeB);
-        $this->assertSame(2, count($node->getChilds()));
+        $this->assertSame(2, count($node->getChildren()));
 
         $this->assertNull($nodeB->getParent());
         $this->assertNull($nodeB->getPreviousSibling());
@@ -66,7 +66,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         extract($this->createNodes());
 
         $node->removeChild($nodeC);
-        $this->assertSame(2, count($node->getChilds()));
+        $this->assertSame(2, count($node->getChildren()));
 
         $this->assertNull($nodeC->getParent());
         $this->assertNull($nodeC->getPreviousSibling());
@@ -84,7 +84,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         extract($this->createNodes());
 
         $node->removeChild($nodeD);
-        $this->assertSame(2, count($node->getChilds()));
+        $this->assertSame(2, count($node->getChildren()));
 
         $this->assertNull($nodeD->getParent());
         $this->assertNull($nodeD->getPreviousSibling());
@@ -104,8 +104,8 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 
         $dst_node->addChild($src_nodeC);
 
-        $this->assertSame(2, count($src_node->getChilds()));
-        $this->assertSame(4, count($dst_node->getChilds()));
+        $this->assertSame(2, count($src_node->getChildren()));
+        $this->assertSame(4, count($dst_node->getChildren()));
     }
 }
 

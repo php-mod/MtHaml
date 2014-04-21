@@ -7,6 +7,10 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 abstract class NodeAbstract implements Node
 {
     private $position;
+
+    /**
+     * @var NestAbstract
+     */
     private $parent;
     private $nextSibling;
     private $previousSibling;
@@ -31,7 +35,7 @@ abstract class NodeAbstract implements Node
         return $this->position['column'];
     }
 
-    protected function setParent(NodeAbstract $parent = null)
+    protected function setParent(NestAbstract $parent = null)
     {
         $this->parent = $parent;
     }
