@@ -2,6 +2,7 @@
 
 namespace MtHaml;
 
+use MtHaml\Node\InterpolatedStringStatement;
 use MtHaml\Node\Root;
 use MtHaml\Exception\SyntaxErrorException;
 use MtHaml\Node\NodeAbstract;
@@ -834,7 +835,7 @@ class Parser
             $buf->nextLine();
             $buf->eatChars(strlen($indent));
             $str = $this->parseInterpolatedString($buf, false);
-            $node->addChild(new Statement($str->getPosition(), $str));
+            $node->addChild(new InterpolatedStringStatement($str->getPosition(), $str));
         }
 
         return $node;

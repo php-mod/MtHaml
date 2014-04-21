@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Exception;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -13,7 +14,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 class InterpolatedString extends NodeAbstract implements String, HasChildren
 {
     /**
-     * @var NodeAbstract[]
+     * @var HasContent[]
      */
     protected $children = array();
 
@@ -27,10 +28,10 @@ class InterpolatedString extends NodeAbstract implements String, HasChildren
     }
 
     /**
-     * @param NodeAbstract $child Child
+     * @param HasContent $child Child
      * @throws \InvalidArgumentException
      */
-    public function addChild(NodeAbstract $child)
+    public function addChild(HasContent $child)
     {
 
         if (!$child instanceof Text && !$child instanceof Insert) {
@@ -41,7 +42,7 @@ class InterpolatedString extends NodeAbstract implements String, HasChildren
     }
 
     /**
-     * @return NodeAbstract[]
+     * @return HasContent[]
      */
     public function getChildren()
     {

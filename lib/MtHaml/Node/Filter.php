@@ -7,7 +7,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 class Filter extends NodeAbstract implements HasChildren
 {
     /**
-     * @var Statement[]
+     * @var InterpolatedStringStatement[]
      */
     private $children = array();
     private $filter;
@@ -23,11 +23,14 @@ class Filter extends NodeAbstract implements HasChildren
         return $this->filter;
     }
 
-    public function addChild(Statement $node)
+    public function addChild(InterpolatedStringStatement $node)
     {
         $this->children[] = $node;
     }
 
+    /**
+     * @return InterpolatedStringStatement[]
+     */
     public function getChildren()
     {
         return $this->children;

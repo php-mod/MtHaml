@@ -4,7 +4,7 @@ namespace MtHaml\Node;
 
 use MtHaml\Nodevisitor\NodeVisitorInterface;
 
-class Text extends EscapableAbstract
+class Text extends EscapableAbstract implements HasContent
 {
     private $content;
 

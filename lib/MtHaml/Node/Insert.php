@@ -9,7 +9,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
  *
  * Represents code to execute and whose result is inserted in the document.
  */
-class Insert extends EscapableAbstract
+class Insert extends EscapableAbstract implements HasContent
 {
     protected $content;
 
