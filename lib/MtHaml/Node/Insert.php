@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -13,7 +14,7 @@ class Insert extends EscapableAbstract implements HasContent
 {
     protected $content;
 
-    public function __construct(array $position, $content)
+    public function __construct(Position $position, $content)
     {
         parent::__construct($position);
         $this->content = $content;

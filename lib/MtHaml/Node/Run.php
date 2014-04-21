@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -14,7 +15,7 @@ class Run extends NestAbstract
 {
     private $midblock;
 
-    public function __construct(array $position, $content)
+    public function __construct(Position $position, $content)
     {
         parent::__construct($position);
         $this->setContent($content);

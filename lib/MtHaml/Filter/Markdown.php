@@ -3,6 +3,7 @@
 namespace MtHaml\Filter;
 
 use Michelf\Markdown as MarkdownTransformer;
+use MtHaml\Helpers\Position;
 use MtHaml\Node\InterpolatedString;
 use MtHaml\NodeVisitor\RendererAbstract as Renderer;
 use MtHaml\Node\Filter;
@@ -45,15 +46,15 @@ class Markdown extends AbstractFilter
             $content .= "\n";
         }
 
-        $string = new InterpolatedString(array());
+        $string = new InterpolatedString(new Position());
         $result = $this->markdown->transform($content);
         foreach ($inserts as $hash => $insert) {
             $parts = explode($hash, $result, 2);
-            $string->addChild(new Text(array(), $parts[0]));
+            $string->addChild(new Text(new Position(), $parts[0]));
             $string->addChild($insert);
             $result = $parts[1];
         }
-        $string->addChild(new Text(array(), $result));
+        $string->addChild(new Text(new Position(), $result));
         $string->accept($renderer);
     }
 

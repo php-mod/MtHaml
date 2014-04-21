@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class ObjectRefClass extends NodeAbstract
@@ -9,7 +10,7 @@ class ObjectRefClass extends NodeAbstract
     protected $object;
     protected $prefix;
 
-    public function __construct($position, NodeAbstract $object, NodeAbstract $prefix = null)
+    public function __construct(Position $position, NodeAbstract $object, NodeAbstract $prefix = null)
     {
         parent::__construct($position);
         $this->object = $object;

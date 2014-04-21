@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -34,7 +35,7 @@ class Doctype extends NodeAbstract
         ),
     );
 
-    public function __construct(array $position, $doctypeId, $options)
+    public function __construct(Position $position, $doctypeId, $options)
     {
         parent::__construct($position);
         $this->doctypeId = $doctypeId;

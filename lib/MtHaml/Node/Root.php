@@ -2,13 +2,14 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Root extends NestAbstract
 {
-  public function __construct(array $position = null)
+  public function __construct(Position $position = null)
   {
-      parent::__construct($position ?: array('lineno' => 0, 'column' => 0));
+      parent::__construct($position ?: new Position());
   }
 
   public function getNodeName()

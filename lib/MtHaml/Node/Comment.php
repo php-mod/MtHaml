@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -13,14 +14,14 @@ class Comment extends NestAbstract
     protected $condition;
 
     /**
-     * @param array     $position
-     * @param bool      $rendered   Whether the comment is rendered in the
+     * @param Position $position
+     * @param bool $rendered Whether the comment is rendered in the
      *                              HTML output (as a HTML comment).
-     * @param string    $condition  IE condition. If not null, the HTML comment
+     * @param string $condition IE condition. If not null, the HTML comment
      *                              will be rendered as an IE conditional
      *                              comment.
      */
-    public function __construct(array $position, $rendered, $condition = null)
+    public function __construct(Position $position, $rendered, $condition = null)
     {
         parent::__construct($position);
         $this->rendered = $rendered;

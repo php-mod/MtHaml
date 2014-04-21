@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Filter extends NodeAbstract implements HasChildren
@@ -12,7 +13,7 @@ class Filter extends NodeAbstract implements HasChildren
     private $children = array();
     private $filter;
 
-    public function __construct(array $position, $filter)
+    public function __construct(Position $position, $filter)
     {
         parent::__construct($position);
         $this->filter = $filter;

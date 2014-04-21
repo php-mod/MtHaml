@@ -2,6 +2,7 @@
 
 namespace MtHaml\Tests\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\Node\Doctype;
 
 class DoctypeTest extends \PHPUnit_Framework_TestCase
@@ -9,7 +10,7 @@ class DoctypeTest extends \PHPUnit_Framework_TestCase
     /** @dataProvider getGetDoctypeReturnsDefaultOneWhenInvalidData */
     public function testGetDoctypeReturnsDefaultOneWhenInvalid($format, $doctype)
     {
-        $node = new Doctype(array('lineno' => 0, 'column' => 0), 'invalid', null);
+        $node = new Doctype(new Position(), 'invalid', null);
 
         $result = @$node->getDoctype($format);
         $this->assertSame($doctype, $result);
@@ -26,7 +27,7 @@ class DoctypeTest extends \PHPUnit_Framework_TestCase
     /** @dataProvider getGetDoctypeTriggersWarningWhenInvalidData */
     public function testGetDoctypeTriggersWarningWhenInvalid($format, $msg)
     {
-        $node = new Doctype(array('lineno' => 0, 'column' => 0), 'invalid', null);
+        $node = new Doctype(new Position(), 'invalid', null);
 
         $e = null;
 

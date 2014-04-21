@@ -2,6 +2,7 @@
 
 namespace MtHaml\Tests\Parser;
 
+use MtHaml\Helpers\Position;
 use MtHaml\Parser\Buffer;
 
 class BufferTest extends \PHPUnit_Framework_TestCase
@@ -14,23 +15,23 @@ class BufferTest extends \PHPUnit_Framework_TestCase
         $this->assertSame("  abc", $buffer->getLine());
 
         $this->assertTrue($buffer->match('~z*~A', $match));
-        $this->assertSame(array(
+        $this->assertEquals(array(
             '',
             'pos' => array(
-                array('lineno' => 1, 'column' => 0),
+                new Position(1, 0),
             ),
         ), $match);
         $this->assertSame("  abc", $buffer->getLine());
 
         $this->assertTrue($buffer->match('~(\s*)(a)~A', $match));
-        $this->assertSame(array(
+        $this->assertEquals(array(
             '  a',
             '  ',
             'a',
             'pos' => array(
-                array('lineno' => 1, 'column' => 0),
-                array('lineno' => 1, 'column' => 0),
-                array('lineno' => 1, 'column' => 2),
+                new Position(1, 0),
+                new Position(1, 0),
+                new Position(1, 2),
             ),
         ), $match);
         $this->assertSame("bc", $buffer->getLine());

@@ -2,13 +2,14 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\Nodevisitor\NodeVisitorInterface;
 
 class Text extends EscapableAbstract implements HasContent
 {
     private $content;
 
-    public function __construct(array $position, $content)
+    public function __construct(Position $position, $content)
     {
         parent::__construct($position);
         $this->content = $content;

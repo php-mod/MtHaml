@@ -2,11 +2,12 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class TagAttributeList extends TagAttribute
 {
-    public function __construct(array $position, NodeAbstract $value = null)
+    public function __construct(Position $position, NodeAbstract $value = null)
     {
         parent::__construct($position, null, $value);
     }

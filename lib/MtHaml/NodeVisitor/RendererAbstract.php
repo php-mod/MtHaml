@@ -120,9 +120,9 @@ abstract class RendererAbstract extends NodeVisitorAbstract
 
     protected function addDebugInfos(NodeAbstract $node)
     {
-        if ($this->lineno != $node->getLineno() + $this->lineOffset) {
-            $this->writeDebugInfos($node->getLineno());
-            $this->lineOffset = $this->lineno - $node->getLineno();
+        if ($this->lineno != $node->getLineNumber() + $this->lineOffset) {
+            $this->writeDebugInfos($node->getLineNumber());
+            $this->lineOffset = $this->lineno - $node->getLineNumber();
         }
     }
 

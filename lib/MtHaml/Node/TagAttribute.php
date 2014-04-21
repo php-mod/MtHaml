@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class TagAttribute extends NodeAbstract
@@ -9,7 +10,7 @@ class TagAttribute extends NodeAbstract
     protected $name;
     protected $value;
 
-    public function __construct(array $position, NodeAbstract $name = null, NodeAbstract $value = null)
+    public function __construct(Position $position, NodeAbstract $name = null, NodeAbstract $value = null)
     {
         parent::__construct($position);
         $this->name = $name;

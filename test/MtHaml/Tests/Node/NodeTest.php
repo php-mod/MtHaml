@@ -2,22 +2,23 @@
 
 namespace MtHaml\Tests\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\Node\Tag;
 
 class NodeTest extends \PHPUnit_Framework_TestCase
 {
     protected function createNodes()
     {
-        $node = new Tag(array(), 'div', array());
+        $node = new Tag(new Position(), 'div', array());
         $this->assertFalse($node->hasChildren());
 
-        $nodeB = new Tag(array(), 'div', array());
+        $nodeB = new Tag(new Position(), 'div', array());
         $node->addChild($nodeB);
 
         $this->assertTrue($node->hasChildren());
         $this->assertSame($node, $nodeB->getParent());
 
-        $nodeC = new Tag(array(), 'div', array());
+        $nodeC = new Tag(new Position(), 'div', array());
         $node->addChild($nodeC);
         $this->assertSame(2, count($node->getChildren()));
 
@@ -29,7 +30,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($nodeB, $nodeC->getPreviousSibling());
         $this->assertSame(null, $nodeC->getNextSibling());
 
-        $nodeD = new Tag(array(), 'div', array());
+        $nodeD = new Tag(new Position(), 'div', array());
         $node->addChild($nodeD);
 
         $this->assertSame($nodeB, $nodeC->getPreviousSibling());

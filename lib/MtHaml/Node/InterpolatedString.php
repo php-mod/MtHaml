@@ -3,6 +3,7 @@
 namespace MtHaml\Node;
 
 use MtHaml\Exception;
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 /**
@@ -18,7 +19,7 @@ class InterpolatedString extends NodeAbstract implements String, HasChildren
      */
     protected $children = array();
 
-    public function __construct(array $position, array $children = array())
+    public function __construct(Position $position, array $children = array())
     {
         parent::__construct($position);
         foreach($children as $child)

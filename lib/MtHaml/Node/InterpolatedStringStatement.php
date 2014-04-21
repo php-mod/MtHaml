@@ -2,6 +2,8 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
+
 class InterpolatedStringStatement extends Statement
 {
     /**
@@ -9,7 +11,7 @@ class InterpolatedStringStatement extends Statement
      */
     protected $content;
 
-    public function __construct(array $position, InterpolatedString $content)
+    public function __construct(Position $position, InterpolatedString $content)
     {
         parent::__construct($position, $content);
     }

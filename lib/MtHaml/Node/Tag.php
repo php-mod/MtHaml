@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Tag extends NestAbstract
@@ -18,7 +19,7 @@ class Tag extends NestAbstract
     protected $attributes = array();
     protected $flags;
 
-    public function __construct(array $position, $tagName, array $attributes, $flags = 0)
+    public function __construct(Position $position, $tagName, array $attributes, $flags = 0)
     {
         parent::__construct($position);
         $this->tagName = $tagName;

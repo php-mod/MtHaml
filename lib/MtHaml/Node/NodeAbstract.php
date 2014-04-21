@@ -2,10 +2,14 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 abstract class NodeAbstract implements Node
 {
+    /**
+     * @var Position
+     */
     private $position;
 
     /**
@@ -23,24 +27,36 @@ abstract class NodeAbstract implements Node
      */
     private $previousSibling;
 
-    public function __construct(array $position)
+    /**
+     * @param Position $position
+     */
+    public function __construct(Position $position)
     {
         $this->position = $position;
     }
 
+    /**
+     * @return Position
+     */
     public function getPosition()
     {
         return $this->position;
     }
 
-    public function getLineno()
+    /**
+     * @return int
+     */
+    public function getLineNumber()
     {
-        return $this->position['lineno'];
+        return $this->position->getLineNumber();
     }
 
+    /**
+     * @return int
+     */
     public function getColumn()
     {
-        return $this->position['column'];
+        return $this->position->getColumn();
     }
 
     protected function setParent(NestAbstract $parent = null)

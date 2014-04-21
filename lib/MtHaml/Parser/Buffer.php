@@ -2,6 +2,8 @@
 
 namespace MtHaml\Parser;
 
+use MtHaml\Helpers\Position;
+
 class Buffer
 {
     protected $lines;
@@ -75,10 +77,7 @@ class Buffer
             $pos = array();
 
             foreach($match as $key => &$capture) {
-                $pos[$key] = array(
-                    'lineno' => $this->lineno,
-                    'column' => $capture[1],
-                );
+                $pos[$key] = new Position($this->lineno, $capture[1]);
                 $capture = $capture[0];
             }
             unset($capture); // ref
@@ -115,10 +114,7 @@ class Buffer
 
     public function getPosition()
     {
-        return array(
-            'lineno' => $this->lineno,
-            'column' => $this->column,
-        );
+        return new Position($this->lineno, $this->column);
     }
 
     public function getLine()

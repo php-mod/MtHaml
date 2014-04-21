@@ -2,6 +2,7 @@
 
 namespace MtHaml\Node;
 
+use MtHaml\Helpers\Position;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 class Statement extends NodeAbstract
@@ -11,7 +12,7 @@ class Statement extends NodeAbstract
      */
     protected $content;
 
-    public function __construct(array $position, NodeAbstract $content)
+    public function __construct(Position $position, NodeAbstract $content)
     {
         parent::__construct($position);
         $this->content = $content;
