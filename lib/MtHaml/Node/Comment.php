@@ -10,6 +10,9 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
  */
 class Comment extends NestAbstract
 {
+    /**
+     * @var bool
+     */
     protected $rendered;
     protected $condition;
 
@@ -20,9 +23,16 @@ class Comment extends NestAbstract
      * @param string $condition IE condition. If not null, the HTML comment
      *                              will be rendered as an IE conditional
      *                              comment.
+     * @throws \Exception
      */
     public function __construct(Position $position, $rendered, $condition = null)
     {
+        if(!is_bool($rendered))
+        {
+            throw new \Exception('Argument 2 passed to ' . __CLASS__ .
+                '::__' . __METHOD__ . '() must be a boolean, ' . gettype($rendered) .
+                ' given,');
+        }
         parent::__construct($position);
         $this->rendered = $rendered;
         $this->condition = $condition;
