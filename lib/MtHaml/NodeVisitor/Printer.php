@@ -94,7 +94,7 @@ class Printer extends NodeVisitorAbstract
             $node->getContent()->accept($this);
         }
 
-        if ($node->hasAttributes() || $node->hasChilds()) {
+        if ($node->hasAttributes() || $node->hasChildren()) {
             $this->raw("\n");
         }
     }
@@ -106,7 +106,7 @@ class Printer extends NodeVisitorAbstract
 
     public function leaveTag(Tag $node)
     {
-        $this->undent()->write(')', $node->hasAttributes()||$node->hasChilds());
+        $this->undent()->write(')', $node->hasAttributes()||$node->hasChildren());
     }
 
     public function enterTagAttribute(TagAttribute $node)
@@ -167,7 +167,7 @@ class Printer extends NodeVisitorAbstract
 
     public function enterRun(Run $node)
     {
-        $this->write('run(' . $node->getContent(), true, $node->hasChilds())
+        $this->write('run(' . $node->getContent(), true, $node->hasChildren())
             ->indent();
     }
 
@@ -187,7 +187,7 @@ class Printer extends NodeVisitorAbstract
 
     public function leaveRun(Run $node)
     {
-        $this->undent()->write(')', $node->hasChilds());
+        $this->undent()->write(')', $node->hasChildren());
     }
 
     public function enterInterpolatedString(InterpolatedString $node)
@@ -207,14 +207,14 @@ class Printer extends NodeVisitorAbstract
 
     public function enterCommentChilds(Comment $node)
     {
-        if ($node->hasChilds()) {
+        if ($node->hasChildren()) {
             $this->raw("\n");
         }
     }
 
     public function leaveComment(Comment $node)
     {
-        $this->undent()->write(')', $node->hasChilds());
+        $this->undent()->write(')', $node->hasChildren());
     }
 
     public function enterDoctype(Doctype $doctype)

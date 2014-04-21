@@ -299,7 +299,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
 
         if ($comment->hasContent()) {
             $this->write($open . ' ', $comment->hasParent(), false);
-        } else if ($comment->hasChilds()) {
+        } else if ($comment->hasChildren()) {
             $this->write($open, true, true)->indent();
         }
     }
@@ -318,7 +318,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
 
         if ($comment->hasContent()) {
             $this->write(' ' . $close, false, $comment->hasParent());
-        } else if ($comment->hasChilds()) {
+        } else if ($comment->hasChildren()) {
             $this->undent()->write($close, true, true);
         }
     }
@@ -491,7 +491,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
             if ($node->getFlags() & Tag::FLAG_REMOVE_INNER_WHITESPACES) {
                 return false;
             }
-            if (!$node->hasChilds()) {
+            if (!$node->hasChildren()) {
                 return false;
             }
         }
@@ -510,7 +510,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
             if ($node->getFlags() & Tag::FLAG_REMOVE_INNER_WHITESPACES) {
                 return false;
             }
-            if (!$node->hasChilds()) {
+            if (!$node->hasChildren()) {
                 return false;
             }
         }

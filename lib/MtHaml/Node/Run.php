@@ -47,7 +47,7 @@ class Run extends NestAbstract
 
     public function isBlock()
     {
-        return $this->hasChilds() || $this->hasMidblock();
+        return $this->hasChildren() || $this->hasMidblock();
     }
 
     public function accept(NodeVisitorInterface $visitor)

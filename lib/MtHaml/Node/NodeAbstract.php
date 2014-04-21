@@ -12,7 +12,15 @@ abstract class NodeAbstract implements Node
      * @var NestAbstract
      */
     private $parent;
+
+    /**
+     * @var NodeAbstract
+     */
     private $nextSibling;
+
+    /**
+     * @var NodeAbstract
+     */
     private $previousSibling;
 
     public function __construct(array $position)

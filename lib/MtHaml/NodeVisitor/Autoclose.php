@@ -15,7 +15,7 @@ class Autoclose extends NodeVisitorAbstract
 
     public function enterTag(Tag $tag)
     {
-        if ($tag->hasChilds() || $tag->hasContent()) {
+        if ($tag->hasChildren() || $tag->hasContent()) {
             return;
         }
         if (in_array($tag->getTagName(), $this->autocloseTags)) {

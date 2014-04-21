@@ -8,6 +8,10 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 abstract class NestAbstract extends NodeAbstract implements NestInterface
 {
     private $content;
+
+    /**
+     * @var NodeAbstract[]
+     */
     private $children = array();
 
     public function addChild(NodeAbstract $node)
@@ -19,7 +23,7 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
             $parent->removeChild($node);
         }
 
-        $prev = end($this->children) ?: null;
+        $prev = $this->getLastChild();
 
         $this->children[] = $node;
         $node->setParent($this);
@@ -54,7 +58,7 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
         $node->setNextSibling(null);
     }
 
-    public function hasChilds()
+    public function hasChildren()
     {
         return 0 < count($this->children);
     }
@@ -71,16 +75,20 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
         }
     }
 
+    /**
+     * @return NodeAbstract
+     */
     public function getLastChild()
     {
         if (false !== $child = end($this->children)) {
             return $child;
         }
+        return null;
     }
 
     public function setContent($content)
     {
-        if (!$this->allowsNestingAndContent() && $this->hasChilds()) {
+        if (!$this->allowsNestingAndContent() && $this->hasChildren()) {
             throw new Exception('A node cannot have both content and nested nodes');
         }
         $this->content = $content;

@@ -9,12 +9,12 @@ class NodeTest extends \PHPUnit_Framework_TestCase
     protected function createNodes()
     {
         $node = new Tag(array(), 'div', array());
-        $this->assertFalse($node->hasChilds());
+        $this->assertFalse($node->hasChildren());
 
         $nodeB = new Tag(array(), 'div', array());
         $node->addChild($nodeB);
 
-        $this->assertTrue($node->hasChilds());
+        $this->assertTrue($node->hasChildren());
         $this->assertSame($node, $nodeB->getParent());
 
         $nodeC = new Tag(array(), 'div', array());
