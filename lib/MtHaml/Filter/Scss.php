@@ -7,6 +7,7 @@ use MtHaml\Node\Filter;
 
 class Scss extends AbstractFilter
 {
+    protected $less;
     private $scss;
 
     public function __construct(\scssc $scss)

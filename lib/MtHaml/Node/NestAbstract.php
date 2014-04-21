@@ -5,7 +5,7 @@ namespace MtHaml\Node;
 use MtHaml\Exception;
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
-abstract class NestAbstract extends NodeAbstract implements NestInterface
+abstract class NestAbstract extends NodeAbstract implements NestInterface, HasChildren
 {
     /**
      * @var NodeAbstract

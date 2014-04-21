@@ -7,7 +7,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 class Statement extends NodeAbstract
 {
     /**
-     * @var String
+     * @var NodeAbstract
      */
     protected $content;
 

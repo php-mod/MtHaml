@@ -4,7 +4,7 @@ namespace MtHaml\Node;
 
 use MtHaml\NodeVisitor\NodeVisitorInterface;
 
-class Filter extends NodeAbstract
+class Filter extends NodeAbstract implements HasChildren
 {
     /**
      * @var Statement[]

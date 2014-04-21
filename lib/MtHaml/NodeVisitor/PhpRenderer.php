@@ -176,6 +176,7 @@ class PhpRenderer extends RendererAbstract
 
             return false;
         }
+        return null;
     }
 
     public function leaveFilter(Filter $node)

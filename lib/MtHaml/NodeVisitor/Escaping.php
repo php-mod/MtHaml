@@ -2,10 +2,10 @@
 
 namespace MtHaml\NodeVisitor;
 
+use MtHaml\Node\EscapableAbstract;
 use MtHaml\Node\Text;
 use MtHaml\Node\Insert;
 use MtHaml\Node\TagAttribute;
-use MtHaml\Node\NodeAbstract;
 use MtHaml\Node\InterpolatedString;
 
 class Escaping extends NodeVisitorAbstract
@@ -31,7 +31,7 @@ class Escaping extends NodeVisitorAbstract
         $this->escapeAttrs = $escapeAttrs;
     }
 
-    protected function escape(NodeAbstract $node)
+    protected function escape(EscapableAbstract $node)
     {
         $enabled = $node->getEscaping()->isEnabled();
 
@@ -57,7 +57,7 @@ class Escaping extends NodeVisitorAbstract
         }
     }
 
-    protected function setEscape(NodeAbstract $node, $mode)
+    protected function setEscape(EscapableAbstract $node, $mode)
     {
         switch($mode) {
         case self::ESCAPE_FALSE:

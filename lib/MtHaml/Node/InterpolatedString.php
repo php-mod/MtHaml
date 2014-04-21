@@ -10,14 +10,20 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
  * Represents a ruby-like interpolated string. Children are Text and Insert
  * nodes.
  */
-class InterpolatedString extends NodeAbstract implements String
+class InterpolatedString extends NodeAbstract implements String, HasChildren
 {
-    protected $children;
+    /**
+     * @var NodeAbstract[]
+     */
+    protected $children = array();
 
-    public function __construct(array $position, array $childs = array())
+    public function __construct(array $position, array $children = array())
     {
         parent::__construct($position);
-        $this->children = $childs;
+        foreach($children as $child)
+        {
+            $this->addChild($child);
+        }
     }
 
     /**
@@ -35,7 +41,7 @@ class InterpolatedString extends NodeAbstract implements String
     }
 
     /**
-     * @return Text|Insert
+     * @return NodeAbstract[]
      */
     public function getChildren()
     {
@@ -72,4 +78,3 @@ class InterpolatedString extends NodeAbstract implements String
         return true;
     }
 }
-

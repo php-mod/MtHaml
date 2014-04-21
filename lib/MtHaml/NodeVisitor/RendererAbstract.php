@@ -2,6 +2,7 @@
 
 namespace MtHaml\NodeVisitor;
 
+use MtHaml\Node\NestAbstract;
 use MtHaml\Node\Tag;
 use MtHaml\Node\TagAttribute;
 use MtHaml\Node\Statement;
@@ -12,7 +13,6 @@ use MtHaml\Node\Comment;
 use MtHaml\Environment;
 use MtHaml\Node\Filter;
 use MtHaml\Node\NodeAbstract;
-use MtHaml\Node\NestInterface;
 use MtHaml\Node\Run;
 use MtHaml\Node\TagAttributeInterpolation;
 use MtHaml\Node\TagAttributeList;
@@ -165,7 +165,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
         }
 
         if (!$hasDynAttr) {
-            return;
+            return null;
         }
 
         $this->renderDynamicAttributes($node);
@@ -302,6 +302,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
         } else if ($comment->hasChildren()) {
             $this->write($open, true, true)->indent();
         }
+        return null;
     }
 
     public function leaveComment(Comment $comment)
@@ -321,6 +322,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
         } else if ($comment->hasChildren()) {
             $this->undent()->write($close, true, true);
         }
+        return null;
     }
 
     public function enterFilterChilds(Filter $node)
@@ -332,6 +334,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
 
             return false;
         }
+        return null;
     }
 
     public function enterRun(Run $node)
@@ -393,7 +396,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
     protected function getParentIfFirstChild(NodeAbstract $node)
     {
         if (null !== $node->getPreviousSibling()) {
-            return;
+            return null;
         }
         return $this->getParentTag($node);
     }
@@ -401,11 +404,15 @@ abstract class RendererAbstract extends NodeVisitorAbstract
     protected function getParentIfLastChild(NodeAbstract $node)
     {
         if (null !== $node->getNextSibling()) {
-            return;
+            return null;
         }
         return $this->getParentTag($node);
     }
 
+    /**
+     * @param NodeAbstract $node
+     * @return Tag
+     */
     protected function getParentTag(NodeAbstract $node)
     {
         if (null !== $parent = $node->getParent()) {
@@ -413,54 +420,61 @@ abstract class RendererAbstract extends NodeVisitorAbstract
                 return $parent;
             }
         }
+        return null;
     }
 
-    protected function getFirstChildIfTag(NodeAbstract $node)
+    protected function getFirstChildIfTag(NestAbstract $node)
     {
-        if (!($node instanceof NestInterface)) {
-            return;
-        }
         if (null === $first = $node->getFirstChild()) {
-            return;
+            return null;
         }
         if (!($first instanceof Tag)) {
-            return;
+            return null;
         }
         return $first;
     }
 
-    protected function getLastChildIfTag(NodeAbstract $node)
+    /**
+     * @param NestAbstract $node
+     * @return Tag
+     */
+    protected function getLastChildIfTag(NestAbstract $node)
     {
-        if (!($node instanceof NestInterface)) {
-            return;
-        }
         if (null === $last = $node->getLastChild()) {
-            return;
+            return null;
         }
         if (!($last instanceof Tag)) {
-            return;
+            return null;
         }
         return $last;
     }
 
+    /**
+     * @param NodeAbstract $node
+     * @return Tag
+     */
     protected function getPreviousIfTag(NodeAbstract $node)
     {
         if (null === $tag = $node->getPreviousSibling()) {
-            return;
+            return null;
         }
         if (!($tag instanceof Tag)) {
-            return;
+            return null;
         }
         return $tag;
     }
 
+    /**
+     * @param NodeAbstract $node
+     * @return Tag
+     */
     protected function getNextIfTag(NodeAbstract $node)
     {
         if (null === $tag = $node->getNextSibling()) {
-            return;
+            return null;
         }
         if (!($tag instanceof Tag)) {
-            return;
+            return null;
         }
         return $tag;
     }
@@ -562,5 +576,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
     {
         $this->echoMode = array_pop($this->echoModeStack);
     }
+
+    abstract protected function renderDynamicAttributes(Tag $node);
 }
 

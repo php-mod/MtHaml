@@ -2,6 +2,7 @@
 
 namespace MtHaml\NodeVisitor;
 
+use MtHaml\Node\NodeAbstract;
 use MtHaml\Node\Tag;
 use MtHaml\Node\TagAttribute;
 use MtHaml\Node\Text;
@@ -10,7 +11,14 @@ use MtHaml\Node\Insert;
 
 class MergeAttrs extends NodeVisitorAbstract
 {
+    /**
+     * @var TagAttribute[]
+     */
     protected $attrs;
+
+    /**
+     * @var Tag
+     */
     protected $tag;
 
     public function enterTagAttributes(Tag $node)
@@ -29,6 +37,7 @@ class MergeAttrs extends NodeVisitorAbstract
                 return false;
             }
         }
+        return true;
     }
 
     public function enterTagAttribute(TagAttribute $node)
@@ -77,17 +86,18 @@ class MergeAttrs extends NodeVisitorAbstract
             }
             return $ret;
         }
+        return null;
     }
 
-    protected function mergeClasses($a, $b)
+    protected function mergeClasses(NodeAbstract $a, NodeAbstract $b)
     {
         $new = new InterpolatedString($a->getPosition());
         if (false === $this->mergeInto($new, $a)) {
-            return;
+            return null;
         }
         $new->addChild(new Text($b->getPosition(), ' '));
         if (false === $this->mergeInto($new, $b)) {
-            return;
+            return null;
         }
         return $new;
     }
@@ -103,6 +113,6 @@ class MergeAttrs extends NodeVisitorAbstract
         } else {
             return false;
         }
+        return null;
     }
 }
-
