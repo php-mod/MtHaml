@@ -31,7 +31,7 @@ class Twig extends AbstractFilter
     {
         foreach ($node->getChildren() as $line) {
             $content = '';
-            foreach ($line->getContent()->getChilds() as $child) {
+            foreach ($line->getContent()->getChildren() as $child) {
                 $content .= $child->getContent();
             }
             $renderer->write($content);

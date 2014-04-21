@@ -11,7 +11,7 @@ abstract class AbstractFilter implements FilterInterface
     public function isOptimizable(Renderer $renderer, Filter $node, $options)
     {
         foreach ($node->getChildren() as $line) {
-            foreach ($line->getContent()->getChilds() as $child) {
+            foreach ($line->getContent()->getChildren() as $child) {
                 if ($child instanceof Insert) {
                     return false;
                 }
@@ -32,7 +32,7 @@ abstract class AbstractFilter implements FilterInterface
     {
         $content = '';
         foreach ($node->getChildren() as $line) {
-            foreach ($line->getContent()->getChilds() as $child) {
+            foreach ($line->getContent()->getChildren() as $child) {
                 $content .= $child->getContent();
             }
             $content .= "\n";

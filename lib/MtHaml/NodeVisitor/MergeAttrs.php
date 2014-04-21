@@ -68,7 +68,7 @@ class MergeAttrs extends NodeVisitorAbstract
         }
         if ($node instanceof InterpolatedString) {
             $ret = '';
-            foreach($node->getChilds() as $child) {
+            foreach($node->getChildren() as $child) {
                 if (null !== $string = $this->getString($child)) {
                     $ret .= $string;
                 } else {
@@ -95,7 +95,7 @@ class MergeAttrs extends NodeVisitorAbstract
     protected function mergeInto(InterpolatedString $dest, $src)
     {
         if ($src instanceof InterpolatedString) {
-            foreach($src->getChilds() as $child) {
+            foreach($src->getChildren() as $child) {
                 $dest->addChild($child);
             }
         } else if ($src instanceof Text || $src instanceof Insert) {

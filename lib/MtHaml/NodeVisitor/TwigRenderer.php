@@ -27,7 +27,7 @@ class TwigRenderer extends RendererAbstract
 
     public function enterInterpolatedString(InterpolatedString $node)
     {
-        if (!$this->isEchoMode() && 1 < count($node->getChilds())) {
+        if (!$this->isEchoMode() && 1 < count($node->getChildren())) {
             $this->raw('(');
         }
     }
@@ -41,7 +41,7 @@ class TwigRenderer extends RendererAbstract
 
     public function leaveInterpolatedString(InterpolatedString $node)
     {
-        if (!$this->isEchoMode() && 1 < count($node->getChilds())) {
+        if (!$this->isEchoMode() && 1 < count($node->getChildren())) {
             $this->raw(')');
         }
     }

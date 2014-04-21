@@ -7,6 +7,9 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 
 abstract class NestAbstract extends NodeAbstract implements NestInterface
 {
+    /**
+     * @var NodeAbstract
+     */
     private $content;
 
     /**
@@ -73,6 +76,7 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
         if (false !== $child = reset($this->children)) {
             return $child;
         }
+        return null;
     }
 
     /**

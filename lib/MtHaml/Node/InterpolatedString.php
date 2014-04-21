@@ -12,16 +12,17 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
  */
 class InterpolatedString extends NodeAbstract implements String
 {
-    protected $childs;
+    protected $children;
 
     public function __construct(array $position, array $childs = array())
     {
         parent::__construct($position);
-        $this->childs = $childs;
+        $this->children = $childs;
     }
 
     /**
-     * @param Text|Insert $child Child
+     * @param NodeAbstract $child Child
+     * @throws \InvalidArgumentException
      */
     public function addChild(NodeAbstract $child)
     {
@@ -30,15 +31,15 @@ class InterpolatedString extends NodeAbstract implements String
             throw new \InvalidArgumentException(sprintf('Argument 1 passed to %s() must be an instance of MtHaml\Node\Text or MtHaml\Node\Insert, instance of %s given', __METHOD__, get_class($child)));
         }
 
-        $this->childs[] = $child;
+        $this->children[] = $child;
     }
 
     /**
      * @return Text|Insert
      */
-    public function getChilds()
+    public function getChildren()
     {
-        return $this->childs;
+        return $this->children;
     }
 
     public function getNodeName()
@@ -51,7 +52,7 @@ class InterpolatedString extends NodeAbstract implements String
         if (false !== $visitor->enterInterpolatedString($this)) {
 
             if (false !== $visitor->enterInterpolatedStringChilds($this)) {
-                foreach($this->getChilds() as $child) {
+                foreach($this->getChildren() as $child) {
                     $child->accept($visitor);
                 }
                 $visitor->leaveInterpolatedStringChilds($this);
@@ -62,7 +63,7 @@ class InterpolatedString extends NodeAbstract implements String
 
     public function isConst()
     {
-        foreach ($this->childs as $child) {
+        foreach ($this->children as $child) {
             if (!$child->isConst()) {
                 return false;
             }

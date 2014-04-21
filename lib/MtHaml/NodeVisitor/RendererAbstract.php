@@ -268,7 +268,7 @@ abstract class RendererAbstract extends NodeVisitorAbstract
     {
         $n = 0;
 
-        foreach ($node->getChilds() as $child) {
+        foreach ($node->getChildren() as $child) {
             if (0 !== $n) {
                 $this->betweenInterpolatedStringChilds($node);
             }

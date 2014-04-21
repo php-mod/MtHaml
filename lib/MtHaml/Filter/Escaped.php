@@ -11,7 +11,7 @@ class Escaped extends Plain
     public function optimize(Renderer $renderer, Filter $node, $options)
     {
         foreach ($node->getChildren() as $child) {
-            foreach ($child->getContent()->getChilds() as $item) {
+            foreach ($child->getContent()->getChildren() as $item) {
                 if ($item instanceof EscapableAbstract) {
                     $item->getEscaping()->setEnabled(true);
                 }

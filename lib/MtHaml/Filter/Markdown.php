@@ -33,7 +33,7 @@ class Markdown extends AbstractFilter
         $inserts = array();
         $content = '';
         foreach ($node->getChildren() as $child) {
-            foreach ($child->getContent()->getChilds() as $item) {
+            foreach ($child->getContent()->getChildren() as $item) {
                 if ($item instanceof Text) {
                     $content .= $item->getContent();
                 } else {
