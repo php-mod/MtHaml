@@ -8,7 +8,7 @@ use MtHaml\NodeVisitor\NodeVisitorInterface;
 abstract class NestAbstract extends NodeAbstract implements NestInterface
 {
     private $content;
-    private $childs = array();
+    private $children = array();
 
     public function addChild(NodeAbstract $node)
     {
@@ -19,9 +19,9 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
             $parent->removeChild($node);
         }
 
-        $prev = end($this->childs) ?: null;
+        $prev = end($this->children) ?: null;
 
-        $this->childs[] = $node;
+        $this->children[] = $node;
         $node->setParent($this);
 
         if ($prev) {
@@ -33,11 +33,11 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
 
     public function removeChild(NodeAbstract $node)
     {
-        if (false === $key = array_search($node, $this->childs, true)) {
+        if (false === $key = array_search($node, $this->children, true)) {
             return;
         }
 
-        unset($this->childs[$key]);
+        unset($this->children[$key]);
 
         $prev = $node->getPreviousSibling();
         $next = $node->getNextSibling();
@@ -56,24 +56,24 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
 
     public function hasChilds()
     {
-        return 0 < count($this->childs);
+        return 0 < count($this->children);
     }
 
-    public function getChilds()
+    public function getChildren()
     {
-        return $this->childs;
+        return $this->children;
     }
 
     public function getFirstChild()
     {
-        if (false !== $child = reset($this->childs)) {
+        if (false !== $child = reset($this->children)) {
             return $child;
         }
     }
 
     public function getLastChild()
     {
-        if (false !== $child = end($this->childs)) {
+        if (false !== $child = end($this->children)) {
             return $child;
         }
     }
@@ -110,7 +110,7 @@ abstract class NestAbstract extends NodeAbstract implements NestInterface
 
     public function visitChilds(NodeVisitorInterface $visitor)
     {
-        foreach($this->getChilds() as $child) {
+        foreach($this->getChildren() as $child) {
             $child->accept($visitor);
         }
     }

@@ -19,7 +19,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
 
         $nodeC = new Tag(array(), 'div', array());
         $node->addChild($nodeC);
-        $this->assertSame(2, count($node->getChilds()));
+        $this->assertSame(2, count($node->getChildren()));
 
         $this->assertSame($node, $nodeC->getParent());
 
