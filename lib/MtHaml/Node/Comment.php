@@ -38,6 +38,9 @@ class Comment extends NestAbstract
         $this->condition = $condition;
     }
 
+    /**
+     * @return bool
+     */
     public function isRendered()
     {
         return $this->rendered;
@@ -53,6 +56,9 @@ class Comment extends NestAbstract
         return $this->condition;
     }
 
+    /**
+     * @return string
+     */
     public function getNodeName()
     {
         return 'comment';
@@ -75,6 +81,9 @@ class Comment extends NestAbstract
         $visitor->leaveComment($this);
     }
 
+    /**
+     * @return bool
+     */
     public function allowsNestingAndContent()
     {
         return ! $this->rendered;

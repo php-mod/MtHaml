@@ -237,8 +237,13 @@ class PhpRenderer extends RendererAbstract
 
         $this->raw(', ');
         $this->raw($this->stringLiteral($this->env->getOption('format')));
-        $this->raw(', ');
-        $this->raw($this->stringLiteral($this->charset));
+        $escape = $this->env->getOption('enable_escaper') &&
+            $this->env->getOption('escape_attrs');
+        if($escape)
+        {
+            $this->raw(', ');
+            $this->raw($this->stringLiteral($this->charset));
+        }
 
         $this->raw('); ?>');
     }

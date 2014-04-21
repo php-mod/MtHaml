@@ -1,0 +1,31 @@
+--FILE--
+<?php
+$env = new MtHaml\Environment('php', array('enable_escaper' => false));
+echo $env->compileString($parts['HAML'], "$file.haml");
+
+--HAML--
+
+%p(foo="bar" #{test})
+%p(#{test} foo="bar")
+%p(#{test})
+%p(bar="baz" #{test} foo="bar")
+%p(bar="baz" #{test} class="abc #{def}")
+
+%p{:foo=>"bar", #{test}}
+%p{#{test}, :foo=>"bar"}
+%p{#{test}}
+%p{:bar=>"baz", #{test}, :foo=>"bar"}
+%p{:bar=>"baz", #{test}, :class=>"abc #{def}"}
+
+--EXPECT--
+<p foo="bar" <?php echo test; ?>></p>
+<p <?php echo test; ?> foo="bar"></p>
+<p <?php echo test; ?>></p>
+<p bar="baz" <?php echo test; ?> foo="bar"></p>
+<p <?php echo MtHaml\Runtime::renderAttributes(array(array('bar', 'baz'), MtHaml\Runtime\AttributeInterpolation::create(test), array('class', ('abc ' . def))), 'html5'); ?>></p>
+<p foo="bar" <?php echo test; ?>></p>
+<p <?php echo test; ?> foo="bar"></p>
+<p <?php echo test; ?>></p>
+<p bar="baz" <?php echo test; ?> foo="bar"></p>
+<p <?php echo MtHaml\Runtime::renderAttributes(array(array('bar', 'baz'), MtHaml\Runtime\AttributeInterpolation::create(test), array('class', ('abc ' . def))), 'html5'); ?>></p>
+
